@@ -28,7 +28,7 @@ function saveCart() {
 function applyTheme(theme) {
     document.documentElement.setAttribute("data-theme", theme);
     $("theme-icon").className = theme === "dark" ? "fa-solid fa-sun" : "fa-solid fa-moon";
-    try { localStorage.setItem("kopiah-theme", theme); } catch (e) {}
+    try { localStorage.setItem("kopiah-theme-v2", theme); } catch (e) {}
 }
 $("theme-toggle").addEventListener("click", () => {
     const current = document.documentElement.getAttribute("data-theme");

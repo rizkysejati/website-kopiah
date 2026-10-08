@@ -15,8 +15,7 @@
         // Terapkan tema tersimpan sebelum render agar tidak berkedip
         (function () {
             try {
-                var t = localStorage.getItem('kopiah-theme') ||
-                    (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+                var t = localStorage.getItem('kopiah-theme-v2') || 'light';
                 document.documentElement.setAttribute('data-theme', t);
             } catch (e) {}
         })();
@@ -209,11 +208,11 @@
 
             <div class="form-group">
                 <label for="buyer-name">Nama lengkap *</label>
-                <input type="text" id="buyer-name" class="form-control" placeholder="Contoh: Rizky" autocomplete="name">
+                <input type="text" id="buyer-name" class="form-control" placeholder="Contoh: Rizky Dwi" autocomplete="name">
             </div>
             <div class="form-group">
                 <label for="buyer-address">Fakultas / kelas / alamat *</label>
-                <input type="text" id="buyer-address" class="form-control" placeholder="Contoh: FMIPA Siskom / Kosan Jl.Sepakat 2">
+                <input type="text" id="buyer-address" class="form-control" placeholder="Contoh: FMIPA Siskom / Kosan Jl. Ahmad Yani">
             </div>
             <div class="form-group">
                 <label>Titik lokasi pengiriman (opsional)</label>
