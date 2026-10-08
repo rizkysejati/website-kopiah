@@ -1,187 +1,248 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KOPIAH - Kopi Pilihan Anak Kuliah</title>
-    <!-- Google Fonts & FontAwesome -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="description" content="KOPIAH, kopi pilihan anak kuliah dari Pontianak. Pre-order Kopi Susu Gula Aren, Ice Americano, dan Matcha Latte.">
+    <link rel="icon" href="aset/logo-kopiah.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <script>
+        // Terapkan tema tersimpan sebelum render agar tidak berkedip
+        (function () {
+            try {
+                var t = localStorage.getItem('kopiah-theme') ||
+                    (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+                document.documentElement.setAttribute('data-theme', t);
+            } catch (e) {}
+        })();
+    </script>
 </head>
 <body>
 
-    <!-- Top Navbar Kapsul Melayang di Tengah -->
-    <nav class="top-navbar">
-        <div class="nav-brand">KOPIAH</div>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="#beranda" class="brand">
+            <img data-logo alt="Logo KOPIAH" class="logo" width="36" height="36">
+            <span>KOPIAH</span>
+        </a>
         <div class="nav-links">
             <a href="#beranda">Beranda</a>
-            <a href="#menu-section">Menu</a>
-            <a href="#promo-section">Promo IG</a>
-            <a href="#about-section">Tentang</a>
+            <a href="#promo">Promo IG</a>
+            <a href="#menu">Menu</a>
+            <a href="#ulasan">Ulasan</a>
+            <a href="#tentang">Tentang</a>
+        </div>
+        <div class="nav-actions">
+            <button class="icon-btn" id="theme-toggle" type="button" aria-label="Ganti tema terang/gelap">
+                <i class="fa-solid fa-moon" id="theme-icon"></i>
+            </button>
+            <button class="icon-btn cart-desktop" type="button" onclick="openCart()" aria-label="Buka keranjang">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="badge cart-badge">0</span>
+            </button>
         </div>
     </nav>
 
-    <!-- Header / Hero Section -->
-    <header id="beranda" class="hero-section">
-        <div class="hero-badge">EST. 2026 • PONTIANAK</div>
-        <h1>KOPIAH</h1>
-        <p class="tagline">Kopi Pilihan Anak Kuliah</p>
-        <p class="sub-tagline">Teman setia di setiap perjalanan akademikmu—dari kelas, tugas, hingga begadang revisian.</p>
-        <a href="#menu-section" class="btn-hero-order"><i class="fa-solid fa-mug-hot"></i> Lihat Menu & Pre-Order</a>
+    <!-- HERO -->
+    <header id="beranda" class="hero">
+        <div class="hero-inner">
+            <img data-logo alt="Logo KOPIAH: biji kopi bertopi toga" class="hero-logo" width="120" height="120">
+            <p class="hero-badge">EST. 2026 • Pontianak</p>
+            <h1>KOPIAH</h1>
+            <p class="tagline">Kopi Pilihan Anak Kuliah</p>
+            <p class="sub-tagline">Teman setia di setiap perjalanan akademiknya—dari kelas, tugas, hingga begadang revisian.</p>
+            <a href="#menu" class="btn btn-primary"><i class="fa-solid fa-mug-hot"></i> Lihat Menu &amp; Pre-Order</a>
+        </div>
     </header>
 
-    <div class="container">
-
-        <!-- Section Promo & Postingan IG Terintegrasi -->
-        <section id="promo-section" class="card-section">
-            <h2 class="section-title"><i class="fa-solid fa-fire"></i> Postingan & Promo Instagram</h2>
-            <p class="about-text" style="margin-bottom: 15px;">Lihat rangkaian update dan poster resmi kami langsung dari Instagram <a href="https://instagram.com/kopiah.ptk" target="_blank" style="color: var(--red-brand); font-weight: 600; text-decoration: none;">@KOPIAH.PTK</a>:</p>
-            
-            <div class="promo-grid">
-                <!-- Post 1: Segera Hadir (7.png) -->
-                <div class="promo-card">
-                    <img src="7.png" alt="Segera Hadir">
-                    <div class="promo-info">
-                        <h4>Teaser: Segera Hadir</h4>
-                        <p>Kopi Susu Gula Aren siap jadi teman ngopi di setiap hari kuliahmu.</p>
-                        <a href="https://www.instagram.com/p/DeHi5pmJEkX/" target="_blank" class="btn-ig"><i class="fa-brands fa-instagram"></i> Lihat Postingan</a>
-                    </div>
-                </div>
-
-                <!-- Post 2: Apa Itu KOPIAH (8.png) -->
-                <div class="promo-card">
-                    <img src="8.png" alt="Apa itu KOPIAH">
-                    <div class="promo-info">
-                        <h4>Apa Itu KOPIAH?</h4>
-                        <p>Filosofi dan keunggulan racikan kopi pilihan khusus untuk mahasiswa.</p>
-                        <a href="https://www.instagram.com/p/DeHkUDKp3BZ/" target="_blank" class="btn-ig"><i class="fa-brands fa-instagram"></i> Lihat Postingan</a>
-                    </div>
-                </div>
-
-                <!-- Post 3: Open Pre-Order (9.png) -->
-                <div class="promo-card">
-                    <img src="9.png" alt="Open Pre-Order">
-                    <div class="promo-info">
-                        <h4>Open Pre-Order Resmi</h4>
-                        <p>Pemesanan batch perdana telah dibuka. Amankan jatah ngopimu sekarang!</p>
-                        <a href="https://www.instagram.com/p/DeIxTtkCbGw/?img_index=1" target="_blank" class="btn-ig"><i class="fa-brands fa-instagram"></i> Lihat Postingan</a>
-                    </div>
+    <main>
+        <!-- PROMO INSTAGRAM -->
+        <section id="promo" class="section">
+            <div class="wrap">
+                <h2 class="section-title">Postingan &amp; Promo Instagram</h2>
+                <p class="section-sub">Update dan poster resmi kami di <a href="https://instagram.com/kopiah.ptk" target="_blank" rel="noopener">@KOPIAH.PTK</a></p>
+                <div class="grid grid-3">
+                    <article class="card promo-card">
+                        <div class="img-box"><img src="aset/7.png" alt="Poster Segera Hadir" loading="lazy"></div>
+                        <div class="card-body">
+                            <h3>Segera Hadir</h3>
+                            <p>Kopi Susu Gula Aren siap jadi teman ngopi di setiap hari kuliahmu.</p>
+                            <a href="https://www.instagram.com/p/DeHi5pmJEkX/" target="_blank" rel="noopener" class="btn-ig"><i class="fa-brands fa-instagram"></i> Lihat Postingan</a>
+                        </div>
+                    </article>
+                    <article class="card promo-card">
+                        <div class="img-box"><img src="aset/8.png" alt="Poster Apa Itu KOPIAH" loading="lazy"></div>
+                        <div class="card-body">
+                            <h3>Apa Itu KOPIAH?</h3>
+                            <p>Filosofi dan keunggulan racikan kopi pilihan khusus untuk mahasiswa.</p>
+                            <a href="https://www.instagram.com/p/DeHkUDKp3BZ/" target="_blank" rel="noopener" class="btn-ig"><i class="fa-brands fa-instagram"></i> Lihat Postingan</a>
+                        </div>
+                    </article>
+                    <article class="card promo-card">
+                        <div class="img-box"><img src="aset/9.png" alt="Poster Open Pre-Order" loading="lazy"></div>
+                        <div class="card-body">
+                            <h3>Open Pre-Order Resmi</h3>
+                            <p>Pemesanan batch perdana sudah dibuka. Amankan jatah ngopimu sekarang!</p>
+                            <a href="https://www.instagram.com/p/DeIxTtkCbGw/?img_index=1" target="_blank" rel="noopener" class="btn-ig"><i class="fa-brands fa-instagram"></i> Lihat Postingan</a>
+                        </div>
+                    </article>
                 </div>
             </div>
         </section>
 
-        <!-- Menu & Harga -->
-        <div id="menu-section" class="section-title" style="margin-top: 25px;"><i class="fa-solid fa-mug-saucer"></i> Menu Pre-Order</div>
-        <div class="product-grid" id="product-list">
-            <!-- Produk akan dimuat lewat script.js -->
-        </div>
-
-        <!-- Tentang Kami (About) -->
-        <section id="about-section" class="card-section" style="margin-top: 25px;">
-            <h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i> Tentang KOPIAH</h2>
-            <p class="about-text">
-                <strong>KOPIAH (Kopi Pilihan Anak Kuliah)</strong> hadir bukan sekadar minuman, melainkan solusi pas buat ngusir kantuk saat kuliah pagi atau lembur ngerjain laporan. Diracik khusus dengan kualitas terbaik yang ramah di kantong mahasiswa Pontianak.
-            </p>
+        <!-- MENU -->
+        <section id="menu" class="section section-alt">
+            <div class="wrap">
+                <h2 class="section-title">Menu Pre-Order</h2>
+                <p class="section-sub">Semua menu 250ml, dibuat setelah pesananmu masuk.</p>
+                <div class="grid grid-3" id="product-list"></div>
+            </div>
         </section>
 
-        <!-- Keunggulan Produk -->
-        <section class="card-section">
-            <h2 class="section-title"><i class="fa-solid fa-star"></i> Keunggulan Kami</h2>
-            <div class="features-grid">
-                <div class="feature-item">
-                    <i class="fa-solid fa-coffee"></i>
-                    <div>
-                        <h4>Kopi Pilihan</h4>
-                        <p>Rasa kopi pas, tidak terlalu pahit, dan nyaman di lambung.</p>
-                    </div>
-                </div>
-                <div class="feature-item">
-                    <i class="fa-solid fa-bottle-water"></i>
-                    <div>
-                        <h4>Susu Berkualitas</h4>
-                        <p>Tekstur lembut dan creamy di setiap tegukan.</p>
-                    </div>
-                </div>
-                <div class="feature-item">
-                    <i class="fa-solid fa-seedling"></i>
-                    <div>
-                        <h4>Gula Aren Asli</h4>
-                        <p>Manis alami dengan aroma khas yang nagih.</p>
-                    </div>
+        <!-- ULASAN -->
+        <section id="ulasan" class="section">
+            <div class="wrap">
+                <h2 class="section-title">Kata Mahasiswa</h2>
+                <p class="section-sub">Ulasan dari teman-teman Teknik Sistem Komputer.</p>
+                <div class="grid grid-3">
+                    <article class="card review-card">
+                        <div class="stars" aria-label="Rating 5 dari 5"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <p class="review-text">"Kopinya pas, nggak terlalu pahit. Pas banget buat nemenin ngerjain laporan praktikum."</p>
+                        <div class="reviewer">
+                            <div class="avatar"><img data-base="ulasan-rakha" alt="Foto Rakha"></div>
+                            <div><strong>Rakha</strong><small>Siskom 25</small></div>
+                        </div>
+                    </article>
+                    <article class="card review-card">
+                        <div class="stars" aria-label="Rating 5 dari 5"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <p class="review-text">"Gula arennya kerasa asli, manisnya nggak enek. Harganya juga ramah di kantong."</p>
+                        <div class="reviewer">
+                            <div class="avatar"><img data-base="ulasan-turi" alt="Foto Turi"></div>
+                            <div><strong>Turi</strong><small>Siskom 24</small></div>
+                        </div>
+                    </article>
+                    <article class="card review-card">
+                        <div class="stars" aria-label="Rating 5 dari 5"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <p class="review-text">"Susunya creamy, kopinya nendang. Begadang revisian jadi lebih kuat."</p>
+                        <div class="reviewer">
+                            <div class="avatar"><img data-base="ulasan-iam" alt="Foto Iam"></div>
+                            <div><strong>Iam</strong><small>Siskom 23</small></div>
+                        </div>
+                    </article>
                 </div>
             </div>
         </section>
 
-        <!-- Cara Pemesanan -->
-        <section class="card-section">
-            <h2 class="section-title"><i class="fa-solid fa-list-check"></i> Cara Pemesanan (Pre-Order)</h2>
-            <ol class="steps-list">
-                <li>Pilih menu botol KOPIAH dan klik tombol <strong>Tambah</strong>.</li>
-                <li>Buka ikon <strong>Keranjang</strong> di bagian bawah layar.</li>
-                <li>Isi Nama, Kelas/Kosan, lalu klik <strong>Deteksi Lokasi GPS</strong> biar kurir gampang antar.</li>
-                <li>Klik <strong>Proses Pesanan ke WhatsApp</strong> dan kirim pesanan ke admin!</li>
-            </ol>
+        <!-- CARA PEMESANAN -->
+        <section id="cara-pesan" class="section section-alt">
+            <div class="wrap narrow">
+                <h2 class="section-title">Cara Pemesanan</h2>
+                <ol class="steps">
+                    <li><strong>Pilih menu.</strong> Klik <em>Tambah</em> pada minuman yang kamu mau.</li>
+                    <li><strong>Buka keranjang.</strong> Cek jumlah dan total harga, hapus item kalau perlu.</li>
+                    <li><strong>Isi data pengiriman.</strong> Masukkan nama, kelas/kosan, lalu deteksi lokasi GPS biar kurir gampang mengantar.</li>
+                    <li><strong>Pilih pembayaran.</strong> COD langsung kirim pesanan ke WhatsApp. QRIS: scan, bayar, lalu kirim bukti pembayaran ke admin.</li>
+                    <li><strong>Tunggu konfirmasi.</strong> Admin mengonfirmasi pesanan lewat WhatsApp.</li>
+                </ol>
+            </div>
         </section>
 
-        <!-- Footer / Kontak -->
-        <footer>
-            <div class="footer-content">
+        <!-- TENTANG -->
+        <section id="tentang" class="section">
+            <div class="wrap narrow">
+              <div class="about-panel">
+                <h2 class="section-title">Tentang KOPIAH</h2>
+                <p class="about-text"><strong>KOPIAH (Kopi Pilihan Anak Kuliah)</strong> hadir bukan sekadar minuman, tapi teman buat ngusir kantuk saat kuliah pagi atau lembur ngerjain laporan. Diracik dari bahan pilihan dengan harga yang ramah di kantong mahasiswa Pontianak.</p>
+                <ul class="features">
+                    <li><i class="fa-solid fa-mug-saucer"></i><div><strong>Kopi pilihan</strong><span>Rasa pas, tidak terlalu pahit, nyaman di lambung.</span></div></li>
+                    <li><i class="fa-solid fa-bottle-water"></i><div><strong>Susu berkualitas</strong><span>Tekstur lembut dan creamy di setiap tegukan.</span></div></li>
+                    <li><i class="fa-solid fa-seedling"></i><div><strong>Gula aren asli</strong><span>Manis alami dengan aroma khas.</span></div></li>
+                </ul>
+              </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="wrap footer-inner">
+            <div>
                 <h3>KOPIAH.PTK</h3>
-                <p><i class="fa-solid fa-location-dot"></i> Area Pontianak & Sekitar Untan</p>
-                <p><i class="fa-brands fa-instagram"></i> Instagram: <a href="https://instagram.com/kopiah.ptk" target="_blank">@KOPIAH.PTK</a></p>
-                <p><i class="fa-brands fa-whatsapp"></i> WhatsApp: <a href="https://wa.me/6281242393442" target="_blank">0812-4239-3442</a></p>
-                <small style="display: block; margin-top: 15px; opacity: 0.7;">© 2026 KOPIAH - All Rights Reserved</small>
+                <p><i class="fa-solid fa-location-dot"></i> Area Pontianak &amp; sekitar Untan</p>
             </div>
-        </footer>
+            <div>
+                <p><i class="fa-brands fa-instagram"></i> <a href="https://instagram.com/kopiah.ptk" target="_blank" rel="noopener">@KOPIAH.PTK</a></p>
+                <p><i class="fa-brands fa-whatsapp"></i> PO: <a href="https://wa.me/6281242393442" target="_blank" rel="noopener">0812-4239-3442</a></p>
+            </div>
+        </div>
+        <p class="copyright">© 2026 KOPIAH. All rights reserved.</p>
+    </footer>
 
-    </div>
-
-    <!-- Bottom Navigation Bar -->
+    <!-- BOTTOM NAV (mobile) -->
     <div class="bottom-nav">
-        <div class="nav-item" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-            <i class="fa-solid fa-house"></i> Beranda
-        </div>
-        <div class="nav-item" onclick="openCartModal()">
+        <a class="nav-item" href="#beranda"><i class="fa-solid fa-house"></i> Beranda</a>
+        <button class="nav-item" type="button" onclick="openCart()">
             <i class="fa-solid fa-cart-shopping"></i> Keranjang
-            <span class="badge" id="cart-badge">0</span>
-        </div>
+            <span class="badge cart-badge">0</span>
+        </button>
     </div>
 
-    <!-- Modal Keranjang & Checkout -->
-    <div class="modal" id="cart-modal">
-        <div class="modal-content">
+    <!-- TOAST -->
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <!-- MODAL KERANJANG & CHECKOUT -->
+    <div class="modal" id="cart-modal" aria-hidden="true">
+        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="cart-title">
             <div class="modal-header">
-                <h3>Keranjang & Pengiriman</h3>
-                <span class="close-modal" onclick="closeCartModal()">&times;</span>
+                <h3 id="cart-title">Keranjang &amp; Pengiriman</h3>
+                <button class="close-modal" type="button" onclick="closeCart()" aria-label="Tutup keranjang">&times;</button>
             </div>
 
-            <div id="cart-items-container"></div>
+            <div id="cart-items"></div>
 
-            <div class="total-section">
-                <span>Total Pembayaran:</span>
-                <span id="cart-total">Rp 0</span>
-            </div>
+            <div class="total-row"><span>Total</span><span id="cart-total">Rp 0</span></div>
 
             <div class="form-group">
-                <label>Nama Lengkap Pemesan *</label>
-                <input type="text" id="buyer-name" class="form-control" placeholder="Contoh: Rizky Dwi">
+                <label for="buyer-name">Nama lengkap *</label>
+                <input type="text" id="buyer-name" class="form-control" placeholder="Contoh: Rizky" autocomplete="name">
             </div>
-
             <div class="form-group">
-                <label>Fakultas / Kelas / Catatan Alamat *</label>
-                <input type="text" id="buyer-address" class="form-control" placeholder="Contoh: FMIPA Rekayasa Sistem Komputer / Kosan">
+                <label for="buyer-address">Fakultas / kelas / alamat *</label>
+                <input type="text" id="buyer-address" class="form-control" placeholder="Contoh: FMIPA Siskom / Kosan Jl.Sepakat 2">
             </div>
-
             <div class="form-group">
-                <label>Titik Lokasi Pengiriman (Google Maps)</label>
-                <button type="button" class="btn-maps" onclick="getLocation()"><i class="fa-solid fa-location-dot"></i> Deteksi Lokasi Saya (GPS)</button>
-                <input type="hidden" id="buyer-maps" value="-">
-                <small id="location-status" style="font-size: 11px; color: #666; display: block; margin-top: 4px;"></small>
+                <label>Titik lokasi pengiriman (opsional)</label>
+                <button type="button" class="btn-maps" onclick="getLocation()"><i class="fa-solid fa-location-crosshairs"></i> Deteksi lokasi saya (GPS)</button>
+                <small id="location-status"></small>
             </div>
 
-            <button class="btn-checkout" onclick="checkoutWhatsApp()">
-                <i class="fa-brands fa-whatsapp" style="font-size: 18px;"></i> Proses Pesanan ke WhatsApp
+            <fieldset class="payment">
+                <legend>Metode pembayaran</legend>
+                <label class="pay-option">
+                    <input type="radio" name="payment" value="cod" checked>
+                    <span><strong>COD</strong> Bayar tunai saat pesanan sampai</span>
+                </label>
+                <label class="pay-option">
+                    <input type="radio" name="payment" value="qris">
+                    <span><strong>QRIS</strong> Scan dan bayar sekarang</span>
+                </label>
+            </fieldset>
+
+            <div id="qris-box" class="qris-box" hidden>
+                <div class="qris-img">
+                    <img data-base="qris-code" alt="Kode QRIS KOPIAH">
+                </div>
+                <p class="qris-total">Total tagihan: <strong id="qris-total">Rp 0</strong></p>
+                <p class="qris-note">Scan QRIS, selesaikan pembayaran, lalu kirim screenshot bukti transfer. Pesanan dikonfirmasi setelah bukti diterima. Di HP, tekan lama gambar QRIS untuk menyimpannya, lalu unggah di aplikasi bank atau e-wallet.</p>
+            </div>
+
+            <button class="btn-checkout" id="btn-checkout" type="button" onclick="checkout()">
+                <i class="fa-brands fa-whatsapp"></i> <span id="checkout-label">Pesan via WhatsApp (COD)</span>
             </button>
         </div>
     </div>
