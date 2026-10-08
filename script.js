@@ -3,9 +3,9 @@ const ADMIN_PHONE = "6281242393442";
 const IMG_DIR = "aset/"; // folder tempat semua foto
 
 const products = [
-    { id: 1, name: "Kopi Susu Gula Aren 250ml", price: 13000, desc: "Kopi pilihan, susu creamy, dan gula aren asli.", img: "menu-kopsus" },
-    { id: 2, name: "Ice Americano 250ml", price: 10000, desc: "Espresso segar dengan es, ringan dan menyegarkan.", img: "menu-americano" },
-    { id: 3, name: "Matcha Latte 250ml", price: 15000, desc: "Matcha lembut berpadu susu, manis seimbang.", img: "menu-matcha" }
+    { id: 1, name: "Kopi Susu Gula Aren 250ml", price: 13000, desc: "Kopi pilihan, susu creamy, dan gula aren asli.", img: "menu-kopsus", ready: true },
+    { id: 2, name: "Ice Americano 250ml", price: 10000, desc: "Espresso segar dengan es, ringan dan menyegarkan.", img: "menu-americano", ready: false },
+    { id: 3, name: "Matcha Latte 250ml", price: 15000, desc: "Matcha lembut berpadu susu, manis seimbang.", img: "menu-matcha", ready: false }
 ];
 
 /* ===== State ===== */
@@ -39,17 +39,18 @@ applyTheme(document.documentElement.getAttribute("data-theme") || "light");
 /* ===== Menu ===== */
 function renderProducts() {
     $("product-list").innerHTML = products.map(p => `
-        <article class="card product-card">
+        <article class="card product-card${p.ready ? "" : " not-ready"}">
             <div class="img-box">
                 <img data-base="${p.img}" data-fallback="${p.fallback || ''}" alt="${p.name}">
+                ${p.ready ? "" : '<span class="ready-badge">Not Ready</span>'}
             </div>
             <div class="card-body">
                 <h3>${p.name}</h3>
                 <p>${p.desc}</p>
                 <div class="product-price">${rupiah(p.price)}</div>
-                <button class="btn-add" id="btn-add-${p.id}" type="button" onclick="addToCart(${p.id})">
-                    <i class="fa-solid fa-plus"></i> Tambah
-                </button>
+                ${p.ready
+                    ? `<button class="btn-add" id="btn-add-${p.id}" type="button" onclick="addToCart(${p.id})"><i class="fa-solid fa-plus"></i> Tambah</button>`
+                    : `<button class="btn-add" id="btn-add-${p.id}" type="button" disabled><i class="fa-solid fa-clock"></i> Belum Tersedia</button>`}
             </div>
         </article>
     `).join("");
@@ -67,7 +68,7 @@ function showToast(msg) {
 /* ===== Keranjang ===== */
 function addToCart(id) {
     const p = products.find(x => x.id === id);
-    if (!p) return;
+    if (!p || !p.ready) return;
     cart[id] = cart[id] ? { ...cart[id], qty: cart[id].qty + 1 } : { id: p.id, qty: 1 };
 
     const btn = $(`btn-add-${id}`);
@@ -98,7 +99,7 @@ function removeItem(id) {
 function cartLines() {
     return Object.values(cart)
         .map(c => ({ ...products.find(p => p.id === c.id), qty: c.qty }))
-        .filter(i => i.name);
+        .filter(i => i.name && i.ready);
 }
 
 function cartTotal() {

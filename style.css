@@ -271,3 +271,14 @@ span.logo svg, span.hero-logo svg { width: 100%; height: 100%; }
     html { scroll-behavior: auto; }
     * { animation: none !important; transition: none !important; }
 }
+
+/* ===== Menu belum ready ===== */
+.img-box { position: relative; }
+.product-card.not-ready .img-box img { filter: blur(7px) grayscale(.35); transform: scale(1.1); }
+.ready-badge {
+    position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) rotate(-8deg);
+    background: rgba(56, 34, 24, .88); color: #F6F6EB; border: 2px solid #F6F6EB;
+    padding: 8px 20px; border-radius: 10px; white-space: nowrap;
+    font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 1.05rem; letter-spacing: .08em; text-transform: uppercase;
+}
+.btn-add:disabled, .btn-add:disabled:hover { background: var(--border); color: var(--muted); cursor: not-allowed; filter: none; }
