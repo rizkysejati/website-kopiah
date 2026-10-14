@@ -3,9 +3,12 @@ const ADMIN_PHONE = "6281242393442";
 const IMG_DIR = "aset/"; // folder tempat semua foto
 
 const products = [
-    { id: 1, name: "Kopi Susu Gula Aren 250ml", price: 13000, desc: "Kopi pilihan, susu creamy, dan gula aren asli.", img: "menu-kopsus", ready: true },
-    { id: 2, name: "Ice Americano 250ml", price: 10000, desc: "Espresso segar dengan es, ringan dan menyegarkan.", img: "menu-americano", ready: false },
-    { id: 3, name: "Matcha Latte 250ml", price: 15000, desc: "Matcha lembut berpadu susu, manis seimbang.", img: "menu-matcha", ready: false }
+    // category: "coffee" | "non-coffee"  ·  ready: true = bisa dipesan, false = Segera Hadir
+    { id: 1, category: "coffee", name: "Kopi Susu Gula Aren 250ml", price: 13000, desc: "Kopi pilihan, susu creamy, dan gula aren asli.", img: "menu-kopsus", ready: true },
+    { id: 4, category: "coffee", name: "Kopi Susu Basic 250ml", price: 10000, desc: "Kopi susu klasik, rasa pas dan ringan di lambung.", img: "menu-basic", ready: false },
+    { id: 2, category: "coffee", name: "Ice Americano 250ml", price: 8000, desc: "Espresso segar dengan es, ringan dan menyegarkan.", img: "menu-americano", ready: false },
+    { id: 5, category: "coffee", name: "Butterscotch Latte 250ml", price: 15000, desc: "Latte creamy dengan sentuhan butterscotch yang manis gurih.", img: "menu-butterscotch", ready: false },
+    { id: 3, category: "non-coffee", name: "Matcha Latte 250ml", price: 15000, desc: "Matcha lembut berpadu susu, manis seimbang.", img: "menu-matcha", ready: false }
 ];
 
 /* ===== State ===== */
@@ -37,23 +40,29 @@ $("theme-toggle").addEventListener("click", () => {
 applyTheme(document.documentElement.getAttribute("data-theme") || "light");
 
 /* ===== Menu ===== */
-function renderProducts() {
-    $("product-list").innerHTML = products.map(p => `
+function productCard(p) {
+    return `
         <article class="card product-card${p.ready ? "" : " not-ready"}">
             <div class="img-box">
-                <img data-base="${p.img}" data-fallback="${p.fallback || ''}" alt="${p.name}">
-                ${p.ready ? "" : '<span class="ready-badge">Not Ready</span>'}
+                <img data-base="${p.img}" alt="${p.name}">
+                ${p.ready ? "" : '<span class="ready-badge">Segera Hadir<small>Tunggu di IG</small></span>'}
             </div>
             <div class="card-body">
-                <h3>${p.name}</h3>
+                <h4>${p.name}</h4>
                 <p>${p.desc}</p>
                 <div class="product-price">${rupiah(p.price)}</div>
                 ${p.ready
                     ? `<button class="btn-add" id="btn-add-${p.id}" type="button" onclick="addToCart(${p.id})"><i class="fa-solid fa-plus"></i> Tambah</button>`
-                    : `<button class="btn-add" id="btn-add-${p.id}" type="button" disabled><i class="fa-solid fa-clock"></i> Belum Tersedia</button>`}
+                    : `<button class="btn-add" id="btn-add-${p.id}" type="button" disabled><i class="fa-solid fa-clock"></i> Tunggu di IG</button>`}
             </div>
-        </article>
-    `).join("");
+        </article>`;
+}
+
+function renderProducts() {
+    [["coffee", "list-coffee"], ["non-coffee", "list-noncoffee"]].forEach(([cat, id]) => {
+        const el = $(id);
+        if (el) el.innerHTML = products.filter(p => p.category === cat).map(productCard).join("");
+    });
 }
 
 /* ===== Toast ===== */
