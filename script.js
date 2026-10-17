@@ -5,10 +5,10 @@ const IMG_DIR = "aset/"; // folder tempat semua foto
 const products = [
     // category: "coffee" | "non-coffee"  ·  ready: true = bisa dipesan, false = Segera Hadir
     { id: 1, category: "coffee", name: "Kopi Susu Gula Aren 250ml", price: 13000, desc: "Kopi pilihan, susu creamy, dan gula aren asli.", img: "menu-kopsus", ready: true },
-    { id: 4, category: "coffee", name: "Kopi Susu Basic 250ml", price: 10000, desc: "Kopi susu klasik, rasa pas dan ringan di lambung.", img: "menu-basic", ready: false },
-    { id: 2, category: "coffee", name: "Ice Americano 250ml", price: 8000, desc: "Espresso segar dengan es, ringan dan menyegarkan.", img: "menu-americano", ready: false },
-    { id: 5, category: "coffee", name: "Butterscotch Latte 250ml", price: 15000, desc: "Latte creamy dengan sentuhan butterscotch yang manis gurih.", img: "menu-butterscotch", ready: false },
-    { id: 3, category: "non-coffee", name: "Matcha Latte 250ml", price: 15000, desc: "Matcha lembut berpadu susu, manis seimbang.", img: "menu-matcha", ready: false }
+    { id: 4, category: "coffee", name: "Kopi Susu Basic 250ml", price: 10000, desc: "Kopi susu klasik, rasa pas dan ringan di lambung.", img: "menu-basic", ready: true },
+    { id: 2, category: "coffee", name: "Ice Americano 250ml", price: 8000, desc: "Espresso segar dengan es, ringan dan menyegarkan.", img: "menu-americano", ready: true },
+    { id: 5, category: "coffee", name: "Butterscotch Latte 250ml", price: 15000, desc: "Latte creamy dengan sentuhan butterscotch yang manis gurih.", img: "menu-butterscotch", ready: true },
+    { id: 3, category: "non-coffee", name: "Matcha Latte 250ml", price: 15000, desc: "Matcha lembut berpadu susu, manis seimbang.", img: "menu-matcha", ready: true }
 ];
 
 /* ===== State ===== */
